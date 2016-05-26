@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteBase /
+
+RewriteCond %{QUERY_STRING} ^code=([^&]+) [NC]
+RewriteRule ^auth$ index.php?page=auth [NC,L,QSA]
