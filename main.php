@@ -8,8 +8,8 @@
     <title>HH Recommendations</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,18 +23,21 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/">Home</a></li>
             <li role="presentation"><a href="https://dev.hh.ru">HH API</a></li>
             <li role="presentation"><a href="https://hh.ru">hh.ru</a></li>
+            <?php if (isset($_COOKIE['myname'])) {?>
+              <li role="presentation" class="active"><a href="/exit">Выйти<span class="badge"><?php echo $_COOKIE['myname']?></span></a></li>
+            <?php }?>
           </ul>
         </nav>
         <h3 class="text-muted">HH Recommendations</h3>
       </div>
 
       <?php
-      if (isset($_GET['page']) && $_GET['page']=='auth') {
-        include_once('authorization.php');
-      } elseif (isset($_GET['page']) && $_GET['page']=='resumes') {
+      if (isset($_GET['page']) && $_GET['page']=='resumes') {
+        include_once('ress.php');
+      } elseif (isset($_GET['page']) && $_GET['page']=='resume') {
         include_once('res.php');
       } else {
         include_once('first.php');
@@ -50,6 +53,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -4,3 +4,7 @@ RewriteBase /
 
 RewriteCond %{QUERY_STRING} ^code=([^&]+) [NC]
 RewriteRule ^auth$ index.php?page=auth [NC,L,QSA]
+
+RewriteRule ^resumes$ index.php?page=resumes [NC,L,QSA]
+RewriteRule ^resume/([[:alnum:]]+)(/?)$ index.php?page=resume&resume_id=$1
+RewriteRule ^exit$ index.php?page=exit
