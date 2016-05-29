@@ -8,10 +8,13 @@ if (isset($_COOKIE['user_id'])) {
   $resumes = json_decode($resp);
   foreach($resumes->{'items'} as $item) {
     $q=$db->prepare("
-      INSERT INTO resumes (item_id, updated, item) VALUES (?, now(), ?)
-      ON DUPLICATE KEY UPDATE updated=now(), item=?
+      UPDATE resumes SET is_active=0 WHERE item_id=?
     ");
-    $item_str = json_encode($item);
-    $q->execute(array($item->{'id'}, $item_str, $item_str));
+    $q->execute(array($item->{'id'}));
+    $resume = curl_get_h("https://api.hh.ru/resumes/" . $item->{'id'}, $headers);
+    $q=$db->prepare("
+      INSERT INTO resumes (item_id, updated, item, is_active) VALUES (?, now(), ?, 1)
+    ");
+    $q->execute(array($item->{'id'}, $resume));
   }
 }
