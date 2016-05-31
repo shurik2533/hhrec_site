@@ -27,6 +27,7 @@
             <li role="presentation"><a href="https://dev.hh.ru">HH API</a></li>
             <li role="presentation"><a href="https://hh.ru">hh.ru</a></li>
             <?php if (isset($_COOKIE['myname'])) {?>
+              <li role="presentation"><a href="/resumes">Резюме</a></li>
               <li role="presentation" class="active"><a href="/exit">Выйти<span class="badge"><?php echo $_COOKIE['myname']?></span></a></li>
             <?php }?>
           </ul>
