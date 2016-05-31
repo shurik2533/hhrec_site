@@ -28,7 +28,7 @@ if (isset($_COOKIE['user_id'])) {
   }?>
   </ul>
   <?php if ($cnt == 0) {?>
-    <div class="alert alert-info" role="alert">Подбор рекомендаций в процессе. Это может занять до 60 минут. Вернитесь на страницу позже</div>
+    <div class="alert alert-info" role="alert">Подбор рекомендаций в процессе. Это может занять до 120 минут. Вернитесь на страницу позже</div>
   <?php } else {?>
     <div class="alert alert-info" role="alert">Рекомендации постоянно обновляются на основе новых вакансий</div>
   <?php } ?>
