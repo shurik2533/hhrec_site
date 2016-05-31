@@ -32,3 +32,26 @@ function curl_get_h($url, $headers) {
 function curl_get($url) {
   return curl_get_h($url, null);
 }
+
+function getHumanDate($date) {
+  $monthes = [
+      1 => "января",
+      2 => "февраля",
+      3 => "марта",
+      4 => "апреля",
+      5 => "мая",
+      6 => "июня",
+      7 => "июля",
+      8 => "августа",
+      9 => "сентября",
+      10 => "октября",
+      11 => "ноября",
+      12 => "декабря",
+
+  ];
+  $pDate = date_parse($date);
+  $hour = $pDate['hour'] < 10 ? (0 . $pDate['hour']) : $pDate['hour'];
+  $minute = $pDate['minute'] < 10 ? (0 . $pDate['minute']) : $pDate['minute'];
+  return $pDate['day'] . " " . $monthes[$pDate['month']] . " "
+  . $pDate['year'] . " в " . $hour . ":" . $minute;
+}
