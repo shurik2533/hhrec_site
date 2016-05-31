@@ -3,10 +3,16 @@ if (isset($_COOKIE['user_id'])) {
   $q = $db->prepare("SELECT item FROM resumes WHERE item_id=?");
   $q->execute(array($_GET['resume_id']));
   $r = $q->fetch();
+
+  $qd = $db->prepare("SELECT max(updated) last_updated FROM recommendations");
+  $qd->execute(array($_GET['resume_id']));
+  $rd = $qd->fetch();
+
   $item = json_decode($r['item']);?>
   <h1><a href="/resumes">Мои резюме</a>/<?php echo $item->{'title'}?></h1>
   <h4><a href="https://hh.ru/resume/<?php echo $item->{'id'}?>" target="_blank">Ваше резюме на hh.ru</a></h4>
   <h2>Рекомендованные вакансии</h2>
+  <div>Последнее обновление было <?php echo getHumanDate($rd['last_updated']);?></div>
   <?php
   $q = $db->prepare("
     SELECT vacancy_id, cast(similarity AS DECIMAL(10,4)) similarity_f, vacancy_title
@@ -22,7 +28,7 @@ if (isset($_COOKIE['user_id'])) {
   }?>
   </ul>
   <?php if ($cnt == 0) {?>
-    <div class="alert alert-info" role="alert">Подбор рекомендаций в процессе. Это может занять до 60 минут. Вернитесь на страницу позже</div>
+    <div class="alert alert-info" role="alert">Подбор рекомендаций в процессе. Это может занять до 120 минут. Вернитесь на страницу позже</div>
   <?php } else {?>
     <div class="alert alert-info" role="alert">Рекомендации постоянно обновляются на основе новых вакансий</div>
   <?php } ?>
