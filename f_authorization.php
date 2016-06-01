@@ -20,6 +20,7 @@ if (isset($_GET['code'])) {
   header('Location: /resumes');
 } else if (isset($_GET['page']) && $_GET['page']=='exit') {
   // unset cookies
+  var_dump($_SERVER['HTTP_COOKIE']);
   if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
     foreach($cookies as $cookie) {
@@ -29,7 +30,7 @@ if (isset($_GET['code'])) {
       setcookie($name, '', time()-1000, '/');
     }
   }
-  header('Location: /');
+  //header('Location: /');
 }
 
 
