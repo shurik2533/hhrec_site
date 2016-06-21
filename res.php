@@ -4,7 +4,7 @@ if (isset($_COOKIE['user_id'])) {
   $q->execute(array($_GET['resume_id']));
   $r = $q->fetch();
 
-  $qd = $db->prepare("SELECT max(updated) last_updated FROM recommendations");
+  $qd = $db->prepare("SELECT max(updated) last_updated FROM recommendations WHERE resume_id=?");
   $qd->execute(array($_GET['resume_id']));
   $rd = $qd->fetch();
 
