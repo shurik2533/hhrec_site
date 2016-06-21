@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>HH Recommendations</title>
+    <title>Recommendations</title>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
             <?php }?>
           </ul>
         </nav>
-        <h3 class="text-muted">HH Recommendations</h3>
+        <h3 class="text-muted">Recommendations</h3>
       </div>
 
       <?php
